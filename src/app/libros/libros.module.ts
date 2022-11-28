@@ -7,6 +7,7 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { LibrosPageRoutingModule } from './libros-routing.module';
 
 import { LibrosPage } from './libros.page';
+import { FormularioLibroComponent } from './formulario-libro/formulario-libro.component';
 
 @NgModule({
   imports: [
@@ -15,9 +16,9 @@ import { LibrosPage } from './libros.page';
     IonicModule,
     LibrosPageRoutingModule
   ],
-  declarations: [LibrosPage],
+  declarations: [LibrosPage, FormularioLibroComponent],
   providers: [
-    ToastController
+    ToastController,
   ]
 })
 export class LibrosPageModule {}
