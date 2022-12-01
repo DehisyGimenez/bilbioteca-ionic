@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonRefresher, ToastController } from '@ionic/angular';
 import { Libro } from '../interfaces/libro.interface';
 import { LibrosService } from '../servicios/libros.service';
+import { FormularioLibroComponent } from './formulario-libro/formulario-libro.component';
 
 @Component({
   selector: 'app-libros',
@@ -10,11 +11,14 @@ import { LibrosService } from '../servicios/libros.service';
 })
 export class LibrosPage implements OnInit {
 
-  @ViewChild(IonRefresher) refresher!: IonRefresher;
+  @ViewChild(FormularioLibroComponent) formularioLibro!: FormularioLibroComponent;
 
   public listaLibros: Libro[]= [];
   public cargandoLibros: boolean = false;
   public modalVisible: boolean = false;
+
+  private libroSeleccionado: Libro | null = null;
+  public modoFormulario: 'Registar' | 'Editar' = 'Registar';
 
   constructor(
     private servicioLibros: LibrosService,
@@ -48,7 +52,25 @@ export class LibrosPage implements OnInit {
   }
 
   public nuevo(){
+    this.modoFormulario = "Registar";
+    this.libroSeleccionado = null;
     this.modalVisible = true;
+  }
+
+  public editar(libro: Libro){
+    this.libroSeleccionado = libro;
+    this.formularioLibro.modo = 'Editar';
+    this.modalVisible = true;
+  }
+
+  public cargarDatosEditar(){
+    if(this.modoFormulario === 'Editar'){
+      this.formularioLibro.modo = this.modoFormulario;
+    this.formularioLibro.form.controls.idCtrl.setValue(this.libroSeleccionado.id);
+    this.formularioLibro.form.controls.tituloCtrl.setValue(this.libroSeleccionado.titulo);
+    this.formularioLibro.form.controls.idautorCtrl.setValue(this.libroSeleccionado.idautor);
+    this.formularioLibro.form.controls.paginasCtrl.setValue(this.libroSeleccionado.paginas);
+    }
   }
    
 }
