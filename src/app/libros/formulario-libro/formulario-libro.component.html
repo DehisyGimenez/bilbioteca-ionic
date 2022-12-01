@@ -8,19 +8,18 @@
   <ion-item fill="outline" class="item-espaciado">
     <ion-label position="floating">Título</ion-label>
     <ion-input inputmode="text"placeholder="Ingresar..."formControlName="tituloCtrl"></ion-input>
-    <ion-note slot="error" *ngIf="form.controls.tituloCtrl.touched">Ingrese un titulo</ion-note>
+    <ion-note slot="error" *ngIf="form.controls.idCtrl.touched">Ingrese un Codigo</ion-note>
     </ion-item>
-  <ion-item fill="outline" class="item-espaciado">
-    <ion-label position="floating">Autor</ion-label>
-    <ion-select formsControlName="idautorCtrl">
-    <ion-select-option *ngFor="let autor of listaAutores" [value]="autor.id">{{ autor.nombre}}</ion-select-option>
-    <ion-note slot="error" *ngIf="form.controls.idautorCtrl.touched">seleccione un autoro</ion-note>
+    <ion-item fill="outline" class="item-espaciado">
+      <ion-label position="floating">Autor</ion-label>
+      <ion-select formControlName="idautorCtrl">
+        <ion-select-option *ngFor="let autor of listaAutores" [value]="autor.id">{{ autor.nombre }}</ion-select-option>
   </ion-select>
-  <ion-note slot="error">Seleccione un autor</ion-note>
+  <ion-note slot="error" *ngIf="form.controls.idauorCtl.touched">Seleccione un autor</ion-note>
   </ion-item>
   <ion-item fill="outline">
     <ion-label position="floating">No. Páginas</ion-label>
-    <ion-input inputmode="number" type="number" placeholder="Ingresar..."formControlName="paginasCtrl"></ion-input>
+    <ion-input inputmode="Number" type="number"  placeholder="Ingresar..." formControlName="paginasCtrl"></ion-input>
     <ion-note slot="error" *ngIf="form.controls.paginasCtrl.touched">Ingrese el nro. de páginas</ion-note>
   </ion-item>
 </ion-list>
