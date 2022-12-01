@@ -12,7 +12,7 @@ export class LibrosService {
 
   constructor(
     private http: HttpClient
-  ) { }
+) { }
 
   public get(): Observable<Libro[]>{
     return this.http.get<Libro[]>(this.url);
@@ -26,6 +26,9 @@ export class LibrosService {
 
   public put(libro: Libro): Observable<any>{
     return this.http.put(this.url, libro, { responseType: 'text' });
+  }
+  public delete(libro: Libro): Observable<any>{
+    return this.http.delete(`${this.url}/${libro.id}. {responseType: 'text'}`);
   }
 
 }
